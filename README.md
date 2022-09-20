@@ -6,6 +6,12 @@
 
 <p align="center">Status: Em desenvolvimento</p>
 
-
 <br>
-![gifPacMovie](https://user-images.githubusercontent.com/85464545/191318894-5e99255e-cbf9-4216-8cac-6e1d109e933c.gif)
+
+<!-- GIF-->
+![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/85464545/191319979-829f8f85-efc8-44d0-92c6-e1c8b451c59b.gif)
+
+
+### Autor
+
+[![LinkedIn Badge](https://img.shields.io/badge/-marcelomoresco-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/marcelo-adriel-moresco-a32104179/)](https://www.linkedin.com/in/marcelo-adriel-moresco-a32104179/)
