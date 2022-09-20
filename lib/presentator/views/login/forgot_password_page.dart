@@ -35,39 +35,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            "Digite seu email e enviaremos um link em seu E-mail!",
-            textAlign: TextAlign.center,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: TextField(
-              controller: _emailController,
-              obscureText: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                  //errorText: _errorPasswordText,
-                  prefixIcon: Icon(Icons.password),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade500),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade500),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  contentPadding: const EdgeInsets.all(10),
-                  hintText: "Senha",
-                  hintStyle: const TextStyle(fontSize: 14)),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-            onPressed: passwordReset,
-            child: Text("Mudar Senha"),
-          )
+          //AGOSTINHOs
         ],
       ),
     );
