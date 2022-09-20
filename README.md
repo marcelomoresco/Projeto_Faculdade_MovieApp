@@ -9,9 +9,6 @@
 <br>
 
 <!-- GIF-->
-![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/85464545/191319979-829f8f85-efc8-44d0-92c6-e1c8b451c59b.gif)
+![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/85464545/191320934-62870a61-b8df-40c3-9c96-27a2d2164e3c.gif)
 
 
-### Autor
-
-[![LinkedIn Badge](https://img.shields.io/badge/-marcelomoresco-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/marcelo-adriel-moresco-a32104179/)](https://www.linkedin.com/in/marcelo-adriel-moresco-a32104179/)
