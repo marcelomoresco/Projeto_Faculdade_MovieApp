@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/movies/service/auth/auth_service.dart';
+import 'package:lottie/lottie.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -11,6 +12,8 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _emailController = TextEditingController();
+
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -29,45 +32,147 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          const Text(
-            "Digite seu email e enviaremos um link em seu E-mail!",
-            textAlign: TextAlign.center,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(25.0),
-            child: TextField(
-              controller: _emailController,
-              obscureText: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                  //errorText: _errorPasswordText,
-                  prefixIcon: Icon(Icons.password),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade500),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade500),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  contentPadding: const EdgeInsets.all(10),
-                  hintText: "Senha",
-                  hintStyle: const TextStyle(fontSize: 14)),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 530,
+              width: double.infinity,
+              decoration: const BoxDecoration(color: Colors.black),
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Lottie.asset(
+                      'assets/password.json',
+                      width: 500,
+                      height: 250,
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
-          SizedBox(
-            height: 10,
+          Positioned(
+            top: 300,
+            child: Container(
+              height: 280,
+              width: MediaQuery.of(context).size.width - 40,
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                  border: Border.all(color: Colors.white, width: 1.5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.38),
+                      spreadRadius: 5,
+                      blurRadius: 15,
+                    )
+                  ]),
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(15.0),
+                  ),
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Digite seu email e lhe enviaremos um link!",
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextField(
+                          controller: _emailController,
+                          obscureText: false,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                              //errorText: _errorEmailText,
+                              prefixIcon: const Icon(Icons.email),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade500),
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade500),
+                                borderRadius: BorderRadius.circular(25),
+                              ),
+                              contentPadding: const EdgeInsets.all(10),
+                              hintText: "E-mail",
+                              hintStyle: const TextStyle(fontSize: 14)),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ]),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  Container(
+                    height: 50,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(22),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.7),
+                            spreadRadius: 5,
+                            blurRadius: 15,
+                          )
+                        ]),
+                    child: _isLoading
+                        ? Center(
+                            child:
+                                CircularProgressIndicator(color: Colors.white),
+                          )
+                        : ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black),
+                            onPressed: () {},
+                            child: GestureDetector(
+                              child: const Text("Mudar Senha",
+                                  style: TextStyle(color: Colors.white)),
+                            ),
+                          ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                ],
+              ),
+            ),
           ),
-          ElevatedButton(
-            onPressed: passwordReset,
-            child: Text("Mudar Senha"),
-          )
         ],
       ),
     );
