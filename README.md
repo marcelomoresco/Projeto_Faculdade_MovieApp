@@ -1,16 +1,14 @@
-# flutter_movies_test
+<h1 align="center">App TalkMovie</h1>
 
-A new Flutter project.
+<p align="center">Esse projeto é uma aplicação que exibe os dados de filmes pesquisados pelo usuário.</p>
 
-## Getting Started
+<p align="center">Fazemos isso atraves da Api do The Movie DB. Além disso o projeto conta com um login feito atráves do Firebase</p>
 
-This project is a starting point for a Flutter application.
+<p align="center">Status: Em desenvolvimento</p>
 
-A few resources to get you started if this is your first Flutter project:
+<br>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<!-- GIF-->
+![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/85464545/191320934-62870a61-b8df-40c3-9c96-27a2d2164e3c.gif)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
