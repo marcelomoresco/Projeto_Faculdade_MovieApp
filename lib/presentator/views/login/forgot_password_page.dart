@@ -173,7 +173,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               ),
             ),
           ),
->>>>>>> 11d6b46b0dcf4ed82fea08f7a4d441990098fdcf
         ],
       ),
     );
