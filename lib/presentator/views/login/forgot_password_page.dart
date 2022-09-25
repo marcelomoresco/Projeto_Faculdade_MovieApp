@@ -38,6 +38,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
+<<<<<<< HEAD
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [],
+=======
       body: Stack(
         children: [
           Positioned(
@@ -174,6 +179,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
           ),
         ],
+>>>>>>> main
       ),
     );
   }
