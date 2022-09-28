@@ -10,7 +10,7 @@
 
 <!-- GIF-->
 ![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/85464545/191320934-62870a61-b8df-40c3-9c96-27a2d2164e3c.gif) <br />
-![Esqueceu a senha (1)](https://user-images.githubusercontent.com/95131167/192847473-fa1fe72f-3756-4f32-92fd-06030e904737.gif)
+![gifgit (1) (1)](https://user-images.githubusercontent.com/95131167/192850392-a0065298-c2e1-40ec-9c3a-224586e934ce.gif)
 
 
 
