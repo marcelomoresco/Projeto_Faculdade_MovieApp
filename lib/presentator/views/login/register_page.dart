@@ -57,9 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    //FABIO REGISTRAR PAGINA
     return Scaffold(
-      key: _formKey,
       extendBodyBehindAppBar: true,
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
@@ -108,131 +106,101 @@ class _RegisterPageState extends State<RegisterPage> {
                       blurRadius: 15,
                     )
                   ]),
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(15.0),
-                  ),
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Cadastre-se!",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(15.0),
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Cadastre-se!",
+                                style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: _nameController,
-                          obscureText: false,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              //errorText: _errorEmailText,
-                              prefixIcon: const Icon(Icons.person),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              contentPadding: const EdgeInsets.all(10),
-                              hintText: "Nome",
-                              hintStyle: const TextStyle(fontSize: 14)),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Por favor isnira um nome ";
-                            } else if (value.length < 4) {
-                              return "Insira um nome ate 4 caracteres";
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        TextFormField(
-                          controller: _emailController,
-                          obscureText: false,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              //errorText: _errorEmailText,
-                              prefixIcon: const Icon(Icons.email),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              contentPadding: const EdgeInsets.all(10),
-                              hintText: "E-mail",
-                              hintStyle: const TextStyle(fontSize: 14)),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Por favor isnira um E-mail ";
-                            } else if (!value.contains("@") ||
-                                !value.contains(".")) {
-                              return "Insira um E-mail valido";
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        TextFormField(
-                          controller: _passwordController,
-                          obscureText: isVisible ? false : true,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                              //errorText: _errorEmailText,
-                              prefixIcon: const Icon(Icons.password),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              contentPadding: const EdgeInsets.all(10),
-                              hintText: "Senha",
-                              hintStyle: const TextStyle(fontSize: 14)),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return "Por favor isnira uma senha ";
-                            } else if (value.length < 8) {
-                              return "Insira uma senha de pelo menos 8 caracteres";
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        TextFormField(
-                            controller: _confirmPasswordController,
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextFormField(
+                            controller: _nameController,
+                            obscureText: false,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                //errorText: _errorEmailText,
+                                prefixIcon: const Icon(Icons.person),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey.shade500),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey.shade500),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                contentPadding: const EdgeInsets.all(10),
+                                hintText: "Nome",
+                                hintStyle: const TextStyle(fontSize: 14)),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Por favor isnira um nome ";
+                              } else if (value.length < 4) {
+                                return "Insira um nome ate 4 caracteres";
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            controller: _emailController,
+                            obscureText: false,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                                //errorText: _errorEmailText,
+                                prefixIcon: const Icon(Icons.email),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey.shade500),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: Colors.grey.shade500),
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                contentPadding: const EdgeInsets.all(10),
+                                hintText: "E-mail",
+                                hintStyle: const TextStyle(fontSize: 14)),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Por favor isnira um E-mail ";
+                              } else if (!value.contains("@") ||
+                                  !value.contains(".")) {
+                                return "Insira um E-mail valido";
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            controller: _passwordController,
                             obscureText: isVisible ? false : true,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
@@ -249,63 +217,96 @@ class _RegisterPageState extends State<RegisterPage> {
                                   borderRadius: BorderRadius.circular(25),
                                 ),
                                 contentPadding: const EdgeInsets.all(10),
-                                hintText: "Confirmar senha",
+                                hintText: "Senha",
                                 hintStyle: const TextStyle(fontSize: 14)),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return "Insira uma senha de pelo menos 8 caracteres";
-                              } else if (value.length < 8) {
                                 return "Por favor isnira uma senha ";
-                              } else if (value != _passwordController.text) {
-                                return "Sennha incompatível";
+                              } else if (value.length < 8) {
+                                return "Insira uma senha de pelo menos 8 caracteres";
                               }
                               return null;
-                            }),
-                      ]),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.7),
-                            spreadRadius: 5,
-                            blurRadius: 15,
-                          )
-                        ]),
-                    child: _isLoading
-                        ? const Center(
-                            child:
-                                CircularProgressIndicator(color: Colors.white),
-                          )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black),
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text(
-                                          'Após registrar será enviado um\n E-mail para confirmação!')),
-                                );
-                              }
                             },
-                            child: GestureDetector(
-                              child: const Text("Registre Agora",
-                                  style: TextStyle(color: Colors.white)),
-                            ),
                           ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                ],
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                              controller: _confirmPasswordController,
+                              obscureText: isVisible ? false : true,
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                  //errorText: _errorEmailText,
+                                  prefixIcon: const Icon(Icons.password),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade500),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade500),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  contentPadding: const EdgeInsets.all(10),
+                                  hintText: "Confirmar senha",
+                                  hintStyle: const TextStyle(fontSize: 14)),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Insira uma senha de pelo menos 8 caracteres";
+                                } else if (value.length < 8) {
+                                  return "Por favor isnira uma senha ";
+                                } else if (value != _passwordController.text) {
+                                  return "Sennha incompatível";
+                                }
+                                return null;
+                              }),
+                        ]),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      height: 50,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.7),
+                              spreadRadius: 5,
+                              blurRadius: 15,
+                            )
+                          ]),
+                      child: _isLoading
+                          ? const Center(
+                              child: CircularProgressIndicator(
+                                  color: Colors.white),
+                            )
+                          : ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black),
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                        content: Text(
+                                            'Após registrar será enviado um\n E-mail para confirmação!')),
+                                  );
+                                }
+                              },
+                              child: GestureDetector(
+                                child: const Text("Registre Agora",
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
