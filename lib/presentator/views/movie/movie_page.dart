@@ -1,88 +1,338 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import '../../../domain/movies/entities/movies.dart';
-import '../../components/custom_list_card.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:glassmorphism/glassmorphism.dart';
+import '../../../domain/movies/models/movie.dart';
+import '../constants.dart';
+import '../../components/search_field_widget.dart';
+import '../../components/masked_image.dart';
 
 class MoviePage extends StatefulWidget {
-  const MoviePage({super.key});
+  const MoviePage({Key? key}) : super(key: key);
 
   @override
   State<MoviePage> createState() => _MoviePageState();
 }
 
 class _MoviePageState extends State<MoviePage> {
-  /*final MoviesRepository moviesRepository = MoviesRepositoryImp(
-    DioServiceImp(),
-  );
-  final MovieController _movieController = MovieController(
-    MoviesCacheDecorator(
-      MoviesRepositoryImp(
-        DioServiceImp(),
-      ),
-    ),
-  );*/
-
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
-    /*Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(28.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      backgroundColor: Constants.kBlackColor,
+      extendBody: true,
+      body: SizedBox(
+        height: screenHeight,
+        width: screenWidth,
+        child: Stack(
           children: [
-            const SizedBox(
-              height: 40,
-            ),
-            ValueListenableBuilder<Movies?>(
-              valueListenable: _movieController.movies,
-              builder: (_, movies, __) {
-                return Visibility(
-                  visible: movies != null,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Movies",
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        onChanged: _movieController.onChanged,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.search_outlined),
-                          border: OutlineInputBorder(),
-                          hintText: 'Search Your Movie',
-                        ),
-                      )
-                    ],
+            Positioned(
+              top: -100,
+              left: -100,
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Constants.kGreenColor.withOpacity(0.5),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 200,
+                    sigmaY: 200,
                   ),
-                );
-              },
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
             ),
-            ValueListenableBuilder<Movies?>(
-              valueListenable: _movieController.movies,
-              builder: (_, movies, __) {
-                return _movieController != null
-                    ? ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: movies!.listMovies.length,
-                        itemBuilder: (_, index) =>
-                            CustomListCard(movie: movies.listMovies[index]),
-                        separatorBuilder: (_, __) => const Divider(),
-                      )
-                    : Center(child: Lottie.asset('assets/lottie_movie.json'));
-              },
+            Positioned(
+              top: screenHeight * 0.4,
+              right: -88,
+              child: Container(
+                height: 166,
+                width: 166,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Constants.kPinkColor.withOpacity(0.5),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 200,
+                    sigmaY: 200,
+                  ),
+                  child: Container(
+                    height: 166,
+                    width: 166,
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              bottom: -100,
+              left: -100,
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Constants.kCyanColor.withOpacity(0.5),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 200,
+                    sigmaY: 200,
+                  ),
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.transparent,
+                  ),
+                ),
+              ),
+            ),
+            SafeArea(
+              bottom: false,
+              child: ListView(
+                primary: true,
+                children: [
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  const Text(
+                    'Qual filme você\ngostaria de assistir?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Constants.kWhiteColor,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const SearchFieldWidget(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 39,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Filmes Novos',
+                      style: TextStyle(
+                        color: Constants.kWhiteColor,
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 37,
+                  ),
+                  SizedBox(
+                    height: 160,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: newMovies.length,
+                      itemBuilder: (context, index) {
+                        String mask;
+                        if (index == 0) {
+                          mask = Constants.kMaskFirstIndex;
+                        } else if (index == newMovies.length - 1) {
+                          mask = Constants.kMaskLastIndex;
+                        } else {
+                          mask = Constants.kMaskCenter;
+                        }
+                        return GestureDetector(
+                          child: Container(
+                            margin: EdgeInsets.only(
+                              left: index == 0 ? 20 : 0,
+                            ),
+                            height: 160,
+                            width: 142,
+                            child: MaskedImage(
+                              asset: newMovies[index].moviePoster,
+                              mask: mask,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 38,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20.0),
+                    child: Text(
+                      'Filmes que estão por vir',
+                      style: TextStyle(
+                        color: Constants.kWhiteColor,
+                        fontSize: 17,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 37,
+                  ),
+                  SizedBox(
+                    height: 160,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: upcomingMovies.length,
+                      itemBuilder: (context, index) {
+                        String mask;
+                        if (index == 0) {
+                          mask = Constants.kMaskFirstIndex;
+                        } else if (index == upcomingMovies.length - 1) {
+                          mask = Constants.kMaskLastIndex;
+                        } else {
+                          mask = Constants.kMaskCenter;
+                        }
+                        return GestureDetector(
+                          child: Container(
+                            margin: EdgeInsets.only(
+                              left: index == 0 ? 20 : 0,
+                            ),
+                            height: 160,
+                            width: 142,
+                            child: MaskedImage(
+                              asset: upcomingMovies[index].moviePoster,
+                              mask: mask,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
-    ))*/
+      floatingActionButton: Container(
+        height: 64,
+        width: 64,
+        padding: const EdgeInsets.all(4),
+        margin: const EdgeInsets.only(top: 40),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Constants.kPinkColor.withOpacity(0.2),
+              Constants.kGreenColor.withOpacity(0.2)
+            ],
+          ),
+        ),
+        child: Container(
+          height: 60,
+          width: 60,
+          padding: const EdgeInsets.all(4),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Constants.kPinkColor,
+                Constants.kGreenColor,
+              ],
+            ),
+          ),
+          child: RawMaterialButton(
+            onPressed: () {},
+            shape: const CircleBorder(),
+            fillColor: const Color(0xff404c57),
+            child: SvgPicture.asset(Constants.kIconPlus),
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: GlassmorphicContainer(
+        width: screenWidth,
+        height: 92,
+        borderRadius: 0,
+        linearGradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Constants.kWhiteColor.withOpacity(0.1),
+            Constants.kWhiteColor.withOpacity(0.1),
+          ],
+        ),
+        border: 0,
+        blur: 30,
+        borderGradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Constants.kPinkColor,
+            Constants.kGreenColor,
+          ],
+        ),
+        child: BottomAppBar(
+          color: Colors.transparent,
+          notchMargin: 4,
+          elevation: 0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    Constants.kIconHome,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    Constants.kIconPlayOnTv,
+                  ),
+                ),
+              ),
+              const Expanded(
+                child: Text(''),
+              ),
+              Expanded(
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    Constants.kIconCategories,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    Constants.kIconDownload,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

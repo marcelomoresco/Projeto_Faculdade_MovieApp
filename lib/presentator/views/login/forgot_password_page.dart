@@ -11,8 +11,10 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _emailController = TextEditingController();
+  
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -51,11 +53,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    /*Lottie.asset(
+                    Lottie.asset(
                       'assets/password.json',
                       width: 500,
                       height: 250,
-                    )*/
+                    )
                   ],
                 ),
               ),
@@ -192,6 +194,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ],
                   ),
                 ),
+
               ),
             ),
           ),
