@@ -11,7 +11,7 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _emailController = TextEditingController();
-  
+
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
@@ -163,7 +163,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                               )
                             ]),
                         child: _isLoading
-                            ? Center(
+                            ? const Center(
                                 child: CircularProgressIndicator(
                                     color: Colors.white),
                               )
@@ -172,11 +172,16 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                                     backgroundColor: Colors.black),
                                 onPressed: () {
                                   if (_formKey.currentState!.validate()) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content: Text(
-                                              'Após registrar será enviado um\n E-mail para confirmação!')),
+                                    passwordReset();
+                                    const snackBar = SnackBar(
+                                      backgroundColor: Colors.green,
+                                      content: Text(
+                                        "E-mail Enviado com Sucesso",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                     );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
                                   }
                                 },
                                 child: GestureDetector(
@@ -188,13 +193,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       const SizedBox(
                         height: 25,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                     ],
                   ),
                 ),
-
               ),
             ),
           ),
