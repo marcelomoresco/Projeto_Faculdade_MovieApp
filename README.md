@@ -9,8 +9,8 @@
 <br>
 
 <!-- GIF-->
-![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/85464545/191320934-62870a61-b8df-40c3-9c96-27a2d2164e3c.gif)
-![ezgif-3-957da6c83e](https://user-images.githubusercontent.com/95131167/192846303-eaee7e61-b6bd-449a-a8e0-74aa855a0b48.gif)
+![ezgif com-gif-maker (9)](https://user-images.githubusercontent.com/85464545/191320934-62870a61-b8df-40c3-9c96-27a2d2164e3c.gif) <br />
+![Esqueceu a senha (1)](https://user-images.githubusercontent.com/95131167/192847473-fa1fe72f-3756-4f32-92fd-06030e904737.gif)
 
 
 
