@@ -51,11 +51,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    /*Lottie.asset(
+                    Lottie.asset(
                       'assets/password.json',
                       width: 500,
                       height: 250,
-                    )*/
+                    )
                   ],
                 ),
               ),
