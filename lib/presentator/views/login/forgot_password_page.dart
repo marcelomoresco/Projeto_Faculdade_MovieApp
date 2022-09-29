@@ -5,7 +5,6 @@ import 'package:lottie/lottie.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
-
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
@@ -13,6 +12,7 @@ class ForgotPasswordPage extends StatefulWidget {
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _emailController = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
   @override
@@ -80,96 +80,125 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       blurRadius: 15,
                     )
                   ]),
-              child: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.all(15.0),
-                  ),
-                  Container(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Digite seu email e lhe enviaremos um link!",
-                              style: TextStyle(
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.all(15.0),
+                      ),
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Digite seu email e lhe enviaremos um link!",
+                                  style: TextStyle(
+                                    color: Colors.grey[600],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextField(
-                          controller: _emailController,
-                          obscureText: false,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              //errorText: _errorEmailText,
-                              prefixIcon: const Icon(Icons.email),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade500),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              contentPadding: const EdgeInsets.all(10),
-                              hintText: "E-mail",
-                              hintStyle: const TextStyle(fontSize: 14)),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                      ]),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Container(
-                    height: 50,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.7),
-                            spreadRadius: 5,
-                            blurRadius: 15,
-                          )
-                        ]),
-                    child: _isLoading
-                        ? Center(
-                            child:
-                                CircularProgressIndicator(color: Colors.white),
-                          )
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.black),
-                            onPressed: () {},
-                            child: GestureDetector(
-                              child: const Text("Mudar Senha",
-                                  style: TextStyle(color: Colors.white)),
+                            const SizedBox(
+                              height: 20,
                             ),
-                          ),
+                            TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "Campo Obrigatório";
+                                } else if (!value.contains('@')) {
+                                  return "E-mail Incorreto";
+                                }
+                                return null;
+                              },
+                              controller: _emailController,
+                              obscureText: false,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  //errorText: _errorEmailText,
+                                  prefixIcon: const Icon(
+                                    Icons.email,
+                                    color: Colors.black,
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade500),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade500),
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  contentPadding: const EdgeInsets.all(10),
+                                  hintText: "E-mail",
+                                  hintStyle: const TextStyle(fontSize: 14)),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                          ]),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.7),
+                                spreadRadius: 5,
+                                blurRadius: 15,
+                              )
+                            ]),
+                        child: _isLoading
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                    color: Colors.white),
+                              )
+                            : ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.black),
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    passwordReset();
+                                    const snackBar = SnackBar(
+                                      backgroundColor: Colors.green,
+                                      content: Text(
+                                        "E-mail Enviado com Sucesso",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    );
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  }
+                                },
+                                child: GestureDetector(
+                                  child: const Text("Mudar Senha",
+                                      style: TextStyle(color: Colors.white)),
+                                ),
+                              ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                ],
+                ),
               ),
             ),
           ),
@@ -178,3 +207,4 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 }
+//teste
